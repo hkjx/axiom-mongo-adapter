@@ -107,6 +107,10 @@ module Axiom
           self
         end
 
+        def to_a
+          tuples.map(&:to_ary)
+        end
+
       private
 
         # Return if method is supported in this gateway

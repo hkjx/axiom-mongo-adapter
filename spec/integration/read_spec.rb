@@ -1,7 +1,7 @@
 require 'spec_helper'
 require 'logger'
 
-if ENV['TRAVIS'] or ENV['HAS_MONGO']
+# if ENV['TRAVIS'] or ENV['HAS_MONGO']
   describe Adapter::Mongo, 'read' do
     let(:uri)           { ENV.fetch('MONGO_URI', '127.0.0.1')                                    }
     let(:logger)        { Logger.new($stdout)                                                    }
@@ -33,4 +33,4 @@ if ENV['TRAVIS'] or ENV['HAS_MONGO']
       data.should == [ [ 'John', 'Doe' ] ]
     end
   end
-end
+# end
