@@ -32,7 +32,7 @@ module Axiom
       # @api private
       #
       def insert(relation)
-        Query.new(@database, relation).test_insert_method
+        Query.new(@database, relation).insert
       end
 
       def read(relation, &block)
