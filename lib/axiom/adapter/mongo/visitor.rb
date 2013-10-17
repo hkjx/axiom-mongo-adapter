@@ -66,6 +66,7 @@ module Axiom
           Axiom::Relation::Operation::Limit  => :visit_limit_operation,
           Axiom::Relation::Operation::Offset => :visit_offset_operation,
           Axiom::Algebra::Union              => :visit_insert_operation,
+          Axiom::Relation::Operation::Insertion => :visit_insert_operation,
           Axiom::Algebra::Restriction        => :visit_restriction
         )
 
