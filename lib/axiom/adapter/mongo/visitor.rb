@@ -102,7 +102,10 @@ module Axiom
 
         def visit_insert_operation(insertion)
           assign_first_time(:@query, insertion) do
-            {:firstname => 'Nate', :lastname => 'River'}
+            #TODO need remove it to Axiom::Relation class, in method to_hash
+            # relation.to_hash like
+            relation.right.to_a.inject([]) {|res, tuple| res << Hash[tuple.data.map { |attribute, value| [attribute.name, value] }]}
+            # {:firstname => 'Nate', :lastname => 'River'}
           end
         end
 

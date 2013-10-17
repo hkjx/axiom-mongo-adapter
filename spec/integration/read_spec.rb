@@ -20,6 +20,10 @@ require 'logger'
       collection.insert(:firstname => 'Sue', :lastname => 'Doe')
     end
 
+    specify 'it allows to insert new records' do
+
+    end
+
     specify 'it allows to receive all records' do
       data = relation.to_a
       data.should == [
