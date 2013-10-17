@@ -25,12 +25,20 @@ module Axiom
           self
         end
 
-        def test_insert_method
+        def insert
           # {:firstname => 'John', :lastname => 'Doe'}
-          @collection.insert({:firstname => 'John', :lastname => 'Doe'})
+          # Hash[data.map { |attribute, value| [attribute.name, value] }]
+          hash = to_hash relation
+          @collection.insert(hash)
         end
 
       private
+        #TODO remove it to class tuple
+        
+        def to_hash(relation)
+          tuples = relation.right.to_a
+          tuples.inject([]) {|res, tuple| res << Hash[tuple.data.map { |attribute, value| [attribute.name, value] }]}
+        end
 
         # Initialize a mongo query
         #
