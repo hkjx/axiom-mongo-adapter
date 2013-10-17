@@ -27,7 +27,7 @@ module Axiom
 
         def test_insert_method
           # {:firstname => 'John', :lastname => 'Doe'}
-          @collection.insert(@visitor.query)
+          @collection.insert({:firstname => 'John', :lastname => 'Doe'})
         end
 
       private
