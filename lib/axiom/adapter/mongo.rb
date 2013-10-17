@@ -32,8 +32,7 @@ module Axiom
       # @api private
       #
       def insert(relation)
-        query = Query.new(@database, relation)
-        query.insert
+        Query.new(@database, relation).insert
       end
 
       def read(relation, &block)

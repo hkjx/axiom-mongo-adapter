@@ -25,7 +25,7 @@ module Axiom
           self
         end
 
-        def insert relation
+        def insert
           # {:firstname => 'John', :lastname => 'Doe'}
           # Hash[data.map { |attribute, value| [attribute.name, value] }]
           @collection.insert(@visitor.query)
