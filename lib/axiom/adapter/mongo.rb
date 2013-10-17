@@ -31,7 +31,7 @@ module Axiom
       #
       # @api private
       #
-      def insert
+      def insert(relation)
         Query.new(@database, relation).test_insert_method
       end
 
