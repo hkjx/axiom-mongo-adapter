@@ -104,7 +104,7 @@ module Axiom
           assign_first_time(:@query, insertion) do
             #TODO need remove it to Axiom::Relation class, in method to_hash
             # relation.to_hash like
-            relation.right.to_a.inject([]) {|res, tuple| res << Hash[tuple.data.map { |attribute, value| [attribute.name, value] }]}
+            insertion.right.to_a.inject([]) {|res, tuple| res << Hash[tuple.data.map { |attribute, value| [attribute.name, value] }]}
             # {:firstname => 'Nate', :lastname => 'River'}
           end
         end
