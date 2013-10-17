@@ -25,6 +25,11 @@ module Axiom
           self
         end
 
+        def test_insert_method
+          # {:firstname => 'John', :lastname => 'Doe'}
+          @collection.insert(@visitor.query)
+        end
+
       private
 
         # Initialize a mongo query
@@ -49,11 +54,6 @@ module Axiom
         #
         def fields
           @visitor.fields.map(&:to_s)
-        end
-
-        def test_insert_method
-          # {:firstname => 'John', :lastname => 'Doe'}
-          @collection.insert(@visitor.query)
         end
 
         # Return results enumerator
