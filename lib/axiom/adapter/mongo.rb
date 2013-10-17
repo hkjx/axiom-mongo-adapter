@@ -31,6 +31,10 @@ module Axiom
       #
       # @api private
       #
+      def insert
+        Query.new(@database, relation).test_insert_method
+      end
+
       def read(relation, &block)
         return to_enum(__method__, relation) unless block_given?
 
