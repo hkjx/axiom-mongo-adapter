@@ -51,6 +51,11 @@ module Axiom
           @visitor.fields.map(&:to_s)
         end
 
+        def test_insert_method
+          # {:firstname => 'John', :lastname => 'Doe'}
+          @collection.insert(@visitor.query)
+        end
+
         # Return results enumerator
         #
         # @return [Enumerator<Hash>]

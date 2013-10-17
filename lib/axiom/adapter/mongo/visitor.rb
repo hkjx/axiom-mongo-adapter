@@ -65,6 +65,7 @@ module Axiom
           Axiom::Relation::Operation::Order  => :visit_order_operation,
           Axiom::Relation::Operation::Limit  => :visit_limit_operation,
           Axiom::Relation::Operation::Offset => :visit_offset_operation,
+          Axiom::Relation::Operation::Insertion => :visit_insert_operation,
           Axiom::Algebra::Restriction        => :visit_restriction
         )
 
@@ -96,6 +97,12 @@ module Axiom
           @fields          = base_relation.header.map(&:name)
 
           self
+        end
+
+        def visit_insert_operation(insertion)
+          assign_first_time(:@query, insertion) do
+            {:firstname => 'Nate', :lastname => 'River'}
+          end
         end
 
         # Visit a restriction
