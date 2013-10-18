@@ -16,14 +16,14 @@ require 'logger'
     let(:collection)    { database.collection('people')                                          }
 
     before :all do
-      collection.insert(:firstname => 'John', :lastname => 'Doe')
-      collection.insert(:firstname => 'Sue', :lastname => 'Doe')
+      insertion = relation.insert([['John', 'Doe'], ['Sue', 'Doe']])
+      adapter.insert(insertion)
+      # collection.insert(:firstname => 'John', :lastname => 'Doe')
+      # collection.insert(:firstname => 'Sue', :lastname => 'Doe')
     end
 
     specify 'it allows to insert new records' do
-      data = relation.to_a
-      a = relation.insert([['Nate', 'River']])
-      adapter.insert a
+      data = relation.to_ary
       data.should == [
         [ 'John', 'Doe' ],
         [ 'Sue', 'Doe' ]
@@ -31,7 +31,7 @@ require 'logger'
     end
 
     specify 'it allows to receive all records' do
-      data = relation.to_a
+      data = relation.to_ary
       data.should == [
         [ 'John', 'Doe' ],
         [ 'Sue', 'Doe' ]

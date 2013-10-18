@@ -108,7 +108,7 @@ module Axiom
           self
         end
 
-        def to_a
+        def to_ary
           tuples.map(&:to_ary)
         end
 
