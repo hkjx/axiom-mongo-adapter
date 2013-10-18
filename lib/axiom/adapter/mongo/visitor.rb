@@ -140,7 +140,7 @@ module Axiom
           instance_variable_set(ivar_name, yield)
 
           dispatch(operation.operand) if operation.respond_to?(:operand)
-          # dispatch(operation.left.send(:relation)) if operation.respond_to?(:left)
+          dispatch(operation.left) if operation.respond_to?(:left)
           self
         end
 
