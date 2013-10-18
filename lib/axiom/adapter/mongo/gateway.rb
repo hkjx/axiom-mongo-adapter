@@ -31,7 +31,8 @@ module Axiom
           Relation::Operation::Order,
           Relation::Operation::Offset,
           Relation::Operation::Limit,
-          Algebra::Restriction
+          Algebra::Restriction,
+          Relation::Operation::Insertion
         ].each_with_object({}) do |operation, map|
           operation::Methods.public_instance_methods(false).each do |method|
             method = method.to_sym
@@ -109,6 +110,10 @@ module Axiom
 
         def to_a
           tuples.map(&:to_ary)
+        end
+
+        def record
+          # adapter.
         end
 
       private
