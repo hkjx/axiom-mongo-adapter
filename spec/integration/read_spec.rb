@@ -17,7 +17,7 @@ require 'logger'
 
     before :all do
       insertion = relation.insert([['John', 'Doe'], ['Sue', 'Doe']])
-      adapter.insert(insertion)
+      insertion.execute!
       # collection.insert(:firstname => 'John', :lastname => 'Doe')
       # collection.insert(:firstname => 'Sue', :lastname => 'Doe')
     end
