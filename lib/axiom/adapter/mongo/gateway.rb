@@ -89,8 +89,8 @@ module Axiom
           @operations = operations
         end
 
-        def record!
-          adapter.send(method, relation)
+        def execute!
+          adapter.execute(relation)
         end
 
         # Iterate over each row in the results
