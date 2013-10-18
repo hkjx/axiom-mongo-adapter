@@ -28,17 +28,19 @@ module Axiom
         def inspect; 'GATEWAY'; end
 
         MAP = [
-          Relation::Operation::Order,
-          Relation::Operation::Offset,
-          Relation::Operation::Limit,
-          Algebra::Restriction,
-          Relation::Operation::Insertion
+          Axiom::Relation::Operation::Order,
+          Axiom::Relation::Operation::Offset,
+          Axiom::Relation::Operation::Limit,
+          Axiom::Algebra::Restriction,
+          Axiom::Algebra::Union,
+          Axiom::Relation::Operation::Insertion
         ].each_with_object({}) do |operation, map|
           operation::Methods.public_instance_methods(false).each do |method|
             method = method.to_sym
             map[method]=operation if method != :last
           end
         end
+        # {:sort_by=>Axiom::Relation::Operation::Order, :sort=>Axiom::Relation::Operation::Order, :drop=>Axiom::Relation::Operation::Offset, :take=>Axiom::Relation::Operation::Limit, :first=>Axiom::Relation::Operation::Limit, :one=>Axiom::Relation::Operation::Limit, :restrict=>Axiom::Algebra::Restriction, :|=>Axiom::Algebra::Union, :union=>Axiom::Algebra::Union, :insert=>Axiom::Relation::Operation::Insertion} 
 
         MAP.each_key do |method|
           class_eval(<<-RUBY, __FILE__,__LINE__+1)
@@ -85,6 +87,10 @@ module Axiom
           @adapter  = adapter
           @relation = relation
           @operations = operations
+        end
+
+        def record!
+          adapter.send(method, relation)
         end
 
         # Iterate over each row in the results

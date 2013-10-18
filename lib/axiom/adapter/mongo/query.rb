@@ -31,13 +31,11 @@ module Axiom
           @collection.insert(@visitor.query)
         end
 
-      private
-        #TODO remove it to class tuple
-        
-        def to_hash(relation)
-          tuples = relation.right.to_a
-          tuples.inject([]) {|res, tuple| res << Hash[tuple.data.map { |attribute, value| [attribute.name, value] }]}
+        def execute
+          @collection.method(@visitor.method_name).call(@visitor.query)
         end
+
+      private
 
         # Initialize a mongo query
         #
