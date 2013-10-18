@@ -55,7 +55,7 @@ module Axiom
         # @api private
         #
         def initialize(relation)
-          relation = relation.send(relation) if relation.is_a 'Gateway'
+          relation = relation.send(:relation) if relation.is_a? 'Gateway'
           dispatch(relation)
           @query ||= {}
           @sort  ||= []
