@@ -16,14 +16,14 @@ require 'logger'
     let(:collection)    { database.collection('people')                                          }
 
     before :all do
-      # adapter.insert(relation.insert([['John', 'Doe'], ['Sue', 'Doe']]))
-      # collection.insert(:firstname => 'John', :lastname => 'Doe')
-      # collection.insert(:firstname => 'Sue', :lastname => 'Doe')
+      collection.insert(:firstname => 'John', :lastname => 'Doe')
+      collection.insert(:firstname => 'Sue', :lastname => 'Doe')
     end
 
     specify 'it allows to insert new records' do
-      adapter.insert(relation.insert([['John', 'Doe'], ['Sue', 'Doe']]))
       data = relation.to_a
+      a = relation.insert([['Nate', 'River']])
+      adapter.insert a
       data.should == [
         [ 'John', 'Doe' ],
         [ 'Sue', 'Doe' ]
