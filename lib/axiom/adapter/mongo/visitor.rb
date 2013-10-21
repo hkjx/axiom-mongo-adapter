@@ -109,7 +109,6 @@ module Axiom
             # relation.to_hash like
             @method_name = :insert
             insertion.right.to_a.inject([]) {|res, tuple| res << Hash[tuple.data.map { |attribute, value| [attribute.name, value] }]}
-            # {:firstname => 'Nate', :lastname => 'River'}
           end
         end
 

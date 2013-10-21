@@ -25,12 +25,6 @@ module Axiom
           self
         end
 
-        def insert
-          # {:firstname => 'John', :lastname => 'Doe'}
-          # Hash[data.map { |attribute, value| [attribute.name, value] }]
-          @collection.insert(@visitor.query)
-        end
-
         def execute
           @collection.method(@visitor.method_name).call(@visitor.query)
         end

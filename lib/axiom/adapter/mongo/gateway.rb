@@ -42,6 +42,8 @@ module Axiom
         end
         # {:sort_by=>Axiom::Relation::Operation::Order, :sort=>Axiom::Relation::Operation::Order, :drop=>Axiom::Relation::Operation::Offset, :take=>Axiom::Relation::Operation::Limit, :first=>Axiom::Relation::Operation::Limit, :one=>Axiom::Relation::Operation::Limit, :restrict=>Axiom::Algebra::Restriction, :|=>Axiom::Algebra::Union, :union=>Axiom::Algebra::Union, :insert=>Axiom::Relation::Operation::Insertion} 
 
+        changed_methods = [:insert]
+
         MAP.each_key do |method|
           class_eval(<<-RUBY, __FILE__,__LINE__+1)
             def #{method}(*args, &block)
@@ -50,7 +52,9 @@ module Axiom
               end
 
               response = @relation.send(:#{method}, *args,&block)
-              self.class.new(adapter, response, @operations + [response.class])
+              result = self.class.new(adapter, response, @operations + [response.class])
+              adapter.execute(result) if changed_method.include?(__method__.to_sym)
+              result
             end
           RUBY
         end
@@ -116,10 +120,6 @@ module Axiom
 
         def to_ary
           tuples.map(&:to_ary)
-        end
-
-        def record
-          # adapter.
         end
 
       private

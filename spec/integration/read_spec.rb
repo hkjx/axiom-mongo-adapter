@@ -18,8 +18,10 @@ require 'logger'
     before :all do
       insertion = relation.insert([['John', 'Doe'], ['Sue', 'Doe']])
       insertion.execute!
-      # collection.insert(:firstname => 'John', :lastname => 'Doe')
-      # collection.insert(:firstname => 'Sue', :lastname => 'Doe')
+    end
+
+    after :all do
+      collection.remove
     end
 
     specify 'it allows to insert new records' do
